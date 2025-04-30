@@ -53,18 +53,35 @@
       text-decoration: none;
     }
     .login-link:hover { text-decoration: underline; }
+    .flash-message {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .flash-message.error { background-color: #f8d7da; color: #721c24; }
+    .flash-message.success { background-color: #d4edda; color: #155724; }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Register</h2>
-    <form action="#" method="POST">
+    <!-- Flash messages block -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('register') }}" method="POST">
       <div class="form-group">
         <label for="role">Select Role</label>
         <select id="role" name="role" required>
           <option value="">--Select--</option>
           <option value="student">Student</option>
           <option value="admin">Admin</option>
+          <!-- You can add more roles as needed -->
         </select>
       </div>
       <div class="form-group">
