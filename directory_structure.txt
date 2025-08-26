@@ -1,0 +1,19 @@
+project-tracker-app/
+├── api/
+│   ├── app.py                  # Flask entrypoint for Vercel
+│   └── data/
+│       └── database.db         # Pre-populated SQLite DB
+├── templates/                  # Jinja2 templates (same as before)
+│   ├── login.html
+│   ├── register.html
+│   ├── admin_dashboard.html
+│   ├── edit_project.html
+│   ├── student_dashboard.html
+│   ├── update_task.html
+│   └── feedback.html
+├── static/                     # Static assets (unchanged)
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── requirements.txt            # Python dependencies
+└── vercel.json                 # Vercel configuration

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f4f4f4; }
+    .dashboard-container { margin-top: 30px; }
+    .card-header { background-color: #4CAF50; color: white; }
+  </style>
+</head>
+<body>
+  <div class="container dashboard-container">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, msg in messages %}
+          <div class="alert alert-{{ 'danger' if category=='error' else 'success' }}">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Create Project -->
+    <div class="card mb-4">
+      <div class="card-header">Create New Project</div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('projects') }}">
+          <div class="form-group">
+            <label for="title">Project Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description"
+                      rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="deadline">Deadline</label>
+            <input type="date" class="form-control" id="deadline" name="deadline">
+          </div>
+          <div class="form-group">
+            <label for="assigned_to">Assign To (User ID or Username)</label>
+            <input type="text" class="form-control" id="assigned_to"
+                   name="assigned_to" placeholder="e.g. 3 or johndoe" required>
+          </div>
+          <button type="submit" class="btn btn-success btn-block">Create Project</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- List Projects -->
+    <div class="card">
+      <div class="card-header">Ongoing Projects</div>
+      <div class="card-body">
+        {% if projects %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Title</th><th>Deadline</th><th>Progress</th>
+                <th>Assigned To</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in projects %}
+              <tr>
+                <td>{{ p.title }}</td>
+                <td>{{ p.deadline }}</td>
+                <td>{{ p.progress }}%</td>
+                <td>{{ p.assigned_to }}</td>
+                <td>
+                  <a href="{{ url_for('edit_project', project_id=p.id) }}"
+                     class="btn btn-warning btn-sm">Edit</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p class="text-center">No projects found.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+IT Administrator
+Activity/Area/Phase:
+Managing user access, security, and system performance.
+Interest:
+Ensuring the app is secure, stable, and integrates well with existing IT infrastructure. They also need role-based access control and system monitoring.
+Influence:
+High – They oversee system maintenance, data security, and compliance.
+Priority:
+High – Their role is critical for maintaining system reliability and security.
+
+Client/User (External Stakeholder)
+Activity/Area/Phase: Reviewing project progress and deliverables
+Interest: Clear visibility into project timelines, milestones, and deliverables
+Influence: Medium
+Priority: Medium
+User Story: As a client, I want to track the progress of my projects in real-time so that I can stay informed about updates and ensure timely completion.
+
+
+Quality Assurance (QA) Team
+Activity/Area/Phase: Reviewing project tasks for quality and compliance
+Interest: Ensuring that completed tasks meet quality standards before final approval
+Influence: Medium
+Priority: Medium
+User Story: As a QA specialist, I want to review completed tasks and provide feedback so that project deliverables maintain high quality and compliance.
+
+Finance/Budget Manager
+Activity/Area/Phase: Budget allocation and resource tracking
+Interest: Monitoring project expenses, resource allocation, and financial efficiency
+Influence: High
+Priority: High
+User Story: As a finance manager, I want to track project budgets and expenses in real time so that I can ensure cost efficiency and prevent overspending.
+
+HR/Resource Manager
+Activity/Area/Phase: Assigning human resources to projects
+Interest: Managing workload distribution and ensuring balanced resource allocation
+Influence: Medium
+Priority: High
+User Story: As an HR manager, I want to view team workloads and availability so that I can allocate resources effectively and prevent burnout.
+
+Scrum Master
+Activity/Area/Phase: Managing Agile workflows and sprint planning
+Interest: Ensuring smooth sprint execution, backlog prioritization, and task tracking
+Influence: High
+Priority: High
+User Story: As a Scrum Master, I want to track sprint progress and identify blockers so that I can help the team stay on schedule and meet deadlines.
+
+
+Product Owner
+Activity/Area/Phase: Managing project requirements and feature development
+Interest: Prioritizing tasks, defining user stories, and tracking development progress
+Influence: High
+Priority: High
+User Story: As a Product Owner, I want to update and prioritize the product backlog so that development aligns with business goals.
+
+
+Stakeholder/Investor
+Activity/Area/Phase: Monitoring project performance and ROI
+Interest: High-level insights into project progress, resource utilization, and financial impact
+Influence: High
+Priority: Medium
+User Story: As an investor, I want access to project performance reports so that I can assess the return on investment and future prospects.
+
+Freelancer/Contractor
+Activity/Area/Phase: Completing assigned tasks within a specific timeline
+Interest: Clear task assignments, deadlines, and deliverable expectations
+Influence: Medium
+Priority: Medium
+User Story: As a freelancer, I want to receive task notifications and deadlines so that I can complete my work on time without missing key updates.
+
+Compliance Officer
+Activity/Area/Phase: Ensuring regulatory and security compliance
+Interest: Monitoring project data security, compliance with regulations, and audit trails
+Influence: High
+Priority: High
+User Story: As a Compliance Officer, I want to generate compliance reports so that I can ensure the project adheres to industry standards and regulations
+
+Support/Helpdesk Agent
+Activity/Area/Phase: Handling project-related queries and troubleshooting
+Interest: Resolving technical issues and assisting users efficiently
+Influence: Medium
+Priority: Medium
+User Story: As a support agent, I want to receive and track support tickets so that I can resolve user issues promptly.
+
+Operations Manager
+Activity/Area/Phase: Managing cross-functional project dependencies
+Interest: Ensuring that operations run smoothly across teams and projects
+Influence: High
+Priority: High
+User Story: As an Operations Manager, I want to monitor project dependencies so that I can ensure smooth collaboration across different teams.
