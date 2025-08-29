@@ -124,14 +124,16 @@ def dashboard():
 @role_required('admin')
 def projects():
     conn = get_db_connection()
+    user_id = session['user_id'] # Get the logged-in user's ID
 
     if request.method == 'POST':
+        # ... (rest of the POST logic is the same)
         title = request.form.get('title')
         description = request.form.get('description')
         deadline = request.form.get('deadline')
         assign_input = request.form.get('assigned_to', '').strip()
 
-        # Allow assignment by ID or username
+        # ... (logic to get assigned_to user_id)
         if assign_input.isdigit():
             assigned_to = int(assign_input)
         else:
@@ -145,17 +147,18 @@ def projects():
                 return redirect(url_for('projects'))
             assigned_to = user['id']
 
+        # Add `created_by` column and its value to the INSERT statement
         conn.execute(
-            "INSERT INTO projects (title, description, deadline, assigned_to) VALUES (?, ?, ?, ?)",
-            (title, description, deadline, assigned_to)
+            "INSERT INTO projects (title, description, deadline, assigned_to, created_by) VALUES (?, ?, ?, ?, ?)",
+            (title, description, deadline, assigned_to, user_id)
         )
         conn.commit()
         flash("Project created successfully!", "success")
 
-    projects = conn.execute("SELECT * FROM projects").fetchall()
+    # Filter projects by the `created_by` columna
+    projects = conn.execute("SELECT * FROM projects WHERE created_by = ?", (user_id,)).fetchall()
     conn.close()
     return render_template('admin_dashboard.html', projects=projects)
-
 # Admin: Edit Project
 @app.route('/edit_project/<int:project_id>', methods=['GET', 'POST'])
 @role_required('admin')

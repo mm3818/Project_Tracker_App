@@ -12,10 +12,12 @@ def create_tables(conn):
         username TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL,
         email TEXT NOT NULL UNIQUE,
-        role TEXT NOT NULL
+        role TEXT NOT NULL,
+        last_login DATETIME -- Added last_login here for completeness with Flask app
     )
     ''')
     # Create the projects table if it doesn't exist
+    # Added 'created_by' column and its FOREIGN KEY constraint
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS projects (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +26,9 @@ def create_tables(conn):
         deadline DATE,
         progress INTEGER DEFAULT 0,
         assigned_to INTEGER,
-        FOREIGN KEY (assigned_to) REFERENCES users(id)
+        created_by INTEGER, -- New column to store the ID of the admin who created the project
+        FOREIGN KEY (assigned_to) REFERENCES users(id),
+        FOREIGN KEY (created_by) REFERENCES users(id) -- Foreign key for the new column
     )
     ''')
     # Create the feedback table if it doesn't exist
@@ -58,11 +62,15 @@ def update_schema():
     os.makedirs('data', exist_ok=True)
     conn = sqlite3.connect(DATABASE)
     
-    # Create tables if they don't exist
+    # Create tables if they don't exist (this will now include 'created_by' for new projects tables)
     create_tables(conn)
     
     # Add the 'last_login' column to 'users' table if it doesn't exist.
     add_column_if_not_exists(conn, 'users', 'last_login', 'DATETIME')
+    
+    # Add the 'created_by' column to 'projects' table if it doesn't exist.
+    # We define it as INTEGER REFERENCES users(id). For existing rows, this will be NULL by default.
+    add_column_if_not_exists(conn, 'projects', 'created_by', 'INTEGER REFERENCES users(id)')
     
     conn.close()
     print("Database schema updated successfully!")
